@@ -33,6 +33,16 @@ public class DemoController {
         return "notesEdit";
     }
 
+    @RequestMapping(value={"/notesView","/notesView/{id}"}, method = RequestMethod.GET)
+    public String notesViewForm(Model model, @PathVariable(required = false, name = "id") Long id) {
+        if (null != id) {
+            model.addAttribute("notes", notesService.findOne(id));
+        } else {
+            model.addAttribute("notes", new Notes());
+        }
+        return "notesView";
+    }
+
     @RequestMapping(value="/notesEdit", method = RequestMethod.POST)
     public String notesEdit(Model model, Notes notes) {
         notesService.saveNotes(notes);

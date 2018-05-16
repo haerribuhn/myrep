@@ -33,6 +33,7 @@
                     <td th:text="${notes.id}">1</td>
                     <td th:text="${notes.title}">Test</td>
                     <td>
+                        <a href="/notesEdit/1" th:href="@{/notesView/__${notes.id}__}">View</a>
                         <a href="/notesEdit/1" th:href="@{/notesEdit/__${notes.id}__}">Edit</a>
                         <a href="/notesDelete/1" th:href="@{/notesDelete/__${notes.id}__}">Delete</a>
                     </td>
