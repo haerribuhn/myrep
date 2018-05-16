@@ -1,3 +1,0 @@
-Zeile1
-vvvvvv nach merge rebase
-fffff
