@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -25,10 +26,6 @@ public class NotesServiceImplTest {
 
     @Mock
     private NotesRepository notesRepository;
-
-    @Before
-    public void setUp() throws Exception {
-    }
 
     @Test
     public void findAll() {
@@ -44,18 +41,49 @@ public class NotesServiceImplTest {
         //then
         verify(notesRepository, times(1)).findAll();
         assertThat(notesListActual.size()).isEqualTo(1);
-
     }
 
     @Test
     public void findOne() {
+        //given
+        Notes notes1 = new Notes("Test 1", "Content 1");
+        notes1.setId(1L);
+        given(notesRepository.findOne(1L)).willReturn(notes1);
+
+        //when
+        Notes notesActual = notesService.findOne(1L);
+
+        //then
+        verify(notesRepository, times(1)).findOne(1L);
+        assertThat(notesActual.getId()).isEqualTo(1L);
     }
 
     @Test
     public void saveNotes() {
+        //given
+        Notes notes1 = new Notes("Test 1", "Content 1");
+        notes1.setId(1L);
+        given(notesRepository.save(notes1)).willReturn(notes1);
+
+        //when
+        Notes notesActual = notesService.saveNotes(notes1);
+
+        //then
+        verify(notesRepository, times(1)).save(notes1);
+        assertThat(notesActual.getId()).isEqualTo(1L);
     }
 
     @Test
     public void deleteNotes() {
+        //given
+        Notes notes1 = new Notes("Test 1", "Content 1");
+        notes1.setId(1L);
+        doNothing().when(notesRepository).delete(notes1);
+
+        //when
+        notesService.deleteNotes(notes1.getId());
+
+        //then
+        verify(notesRepository, times(1)).delete(notes1.getId());
     }
 }

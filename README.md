@@ -19,3 +19,11 @@ mvn package
 ```
 java -jar target/CrudDemo-1.0-SNAPSHOT.jar
 ```
+
+## Todos
+- Client/ServerSide Validation
+- Connect with Postgres
+- Vue.js or AngularJS
+- Add REST-Service
+- Add cradle as build tool
+- As docker image
