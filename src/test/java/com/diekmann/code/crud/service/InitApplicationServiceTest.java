@@ -1,6 +1,5 @@
 package com.diekmann.code.crud.service;
 
-import com.diekmann.code.crud.domain.Notes;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -2,7 +2,6 @@ package com.diekmann.code.crud.service;
 
 import com.diekmann.code.crud.dao.NotesRepository;
 import com.diekmann.code.crud.domain.Notes;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,17 +22,17 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
-    public Notes findOne(Long id) {
+    public Notes findOne(final Long id) {
         return notesRepository.findOne(id);
     }
 
     @Override
-    public Notes saveNotes(Notes notes) {
+    public Notes saveNotes(final Notes notes) {
         return notesRepository.save(notes);
     }
 
     @Override
-    public void deleteNotes(Long id) {
+    public void deleteNotes(final Long id) {
         notesRepository.delete(id);
     }
 }
