@@ -34,8 +34,8 @@ public class DemoControllerTest {
 
     @Test
     public void notesList() throws Exception {
-        Notes notes1 = new Notes("Test 1", "Content 1");
-        List<Notes> notesList = new ArrayList<>();
+        final Notes notes1 = new Notes("Test 1", "Content 1");
+        final List<Notes> notesList = new ArrayList<>();
         notesList.add(notes1);
         when(service.findAll()).thenReturn(notesList);
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
@@ -44,7 +44,7 @@ public class DemoControllerTest {
 
     @Test
     public void notesEditForm() throws Exception {
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
         when(service.findOne(1L)).thenReturn(notes1);
         this.mockMvc.perform(get("/notesEdit/{id}","1"))
@@ -55,7 +55,7 @@ public class DemoControllerTest {
 
     @Test
     public void notesViewForm() throws Exception {
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
         when(service.findOne(1L)).thenReturn(notes1);
         this.mockMvc.perform(get("/notesView/{id}","1"))
@@ -66,11 +66,11 @@ public class DemoControllerTest {
 
     @Test
     public void notesEdit() throws Exception {
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
-        Notes notes2 = new Notes("Test 2", "Content 2");
+        final Notes notes2 = new Notes("Test 2", "Content 2");
         notes2.setId(2L);
-        List<Notes> notesList = new ArrayList<>();
+        final List<Notes> notesList = new ArrayList<>();
         notesList.add(notes1);
         notesList.add(notes2);
         when(service.findAll()).thenReturn(notesList);
@@ -83,11 +83,11 @@ public class DemoControllerTest {
 
     @Test
     public void notesDelete() throws Exception {
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
-        Notes notes2 = new Notes("Test 2", "Content 2");
+        final Notes notes2 = new Notes("Test 2", "Content 2");
         notes2.setId(2L);
-        List<Notes> notesList = new ArrayList<>();
+        final List<Notes> notesList = new ArrayList<>();
         notesList.add(notes2);
         when(service.findAll()).thenReturn(notesList);
         doNothing().when(service).deleteNotes(notes1.getId());
