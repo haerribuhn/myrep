@@ -2,7 +2,6 @@ package com.diekmann.code.crud.service;
 
 import com.diekmann.code.crud.dao.NotesRepository;
 import com.diekmann.code.crud.domain.Notes;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,9 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NotesServiceImplTest {
@@ -30,13 +27,13 @@ public class NotesServiceImplTest {
     @Test
     public void findAll() {
         //given
-        Notes notes1 = new Notes("Test 1", "Content 1");
-        List<Notes> notesList = new ArrayList<>();
+        final Notes notes1 = new Notes("Test 1", "Content 1");
+        final List<Notes> notesList = new ArrayList<>();
         notesList.add(notes1);
         given(notesRepository.findAll()).willReturn(notesList);
 
         //when
-        List<Notes> notesListActual = notesService.findAll();
+        final List<Notes> notesListActual = notesService.findAll();
 
         //then
         verify(notesRepository, times(1)).findAll();
@@ -46,12 +43,12 @@ public class NotesServiceImplTest {
     @Test
     public void findOne() {
         //given
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
         given(notesRepository.findOne(1L)).willReturn(notes1);
 
         //when
-        Notes notesActual = notesService.findOne(1L);
+        final Notes notesActual = notesService.findOne(1L);
 
         //then
         verify(notesRepository, times(1)).findOne(1L);
@@ -61,12 +58,12 @@ public class NotesServiceImplTest {
     @Test
     public void saveNotes() {
         //given
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
         given(notesRepository.save(notes1)).willReturn(notes1);
 
         //when
-        Notes notesActual = notesService.saveNotes(notes1);
+        final Notes notesActual = notesService.saveNotes(notes1);
 
         //then
         verify(notesRepository, times(1)).save(notes1);
@@ -76,7 +73,7 @@ public class NotesServiceImplTest {
     @Test
     public void deleteNotes() {
         //given
-        Notes notes1 = new Notes("Test 1", "Content 1");
+        final Notes notes1 = new Notes("Test 1", "Content 1");
         notes1.setId(1L);
         doNothing().when(notesRepository).delete(notes1);
 

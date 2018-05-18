@@ -1,5 +1,6 @@
 package com.diekmann.code.crud.domain;
 
+
 import javax.persistence.*;
 
 /**
@@ -16,9 +17,10 @@ public class Notes {
     private String content;
 
     public Notes() {
+        //jsu for PMD
     }
 
-    public Notes(String title, String content) {
+    public Notes(final String title, final String content) {
         this.title = title;
         this.content = content;
     }
@@ -27,7 +29,7 @@ public class Notes {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -35,7 +37,7 @@ public class Notes {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
@@ -43,7 +45,7 @@ public class Notes {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(final String content) {
         this.content = content;
     }
 }
