@@ -33,11 +33,11 @@ public class NotesServiceImplTest {
         given(notesRepository.findAll()).willReturn(notesList);
 
         //when
-        final List<Notes> notesListActua2 = notesService.findAll();
+        final List<Notes> notesListActual_Master = notesService.findAll();
 
         //then
         verify(notesRepository, times(1)).findAll();
-        assertThat(notesListActua2.size()).isEqualTo(1);
+        assertThat(notesListActual_Master.size()).isEqualTo(1);
     }
 
     @Test
