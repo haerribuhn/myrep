@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/haerribuhn/myrep)
+
 # CRUD Application
 
 This project is full working example of a simple Spring Boot based CRUD application.
