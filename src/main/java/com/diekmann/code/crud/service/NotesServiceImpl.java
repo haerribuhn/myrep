@@ -23,7 +23,7 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Notes findOne(final Long id) {
-        return notesRepository.findOne(id);
+        return notesRepository.findById(id).get();
     }
 
     @Override
@@ -33,6 +33,6 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public void deleteNotes(final Long id) {
-        notesRepository.delete(id);
+        notesRepository.deleteById(id);
     }
 }
