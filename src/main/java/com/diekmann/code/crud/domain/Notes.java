@@ -1,7 +1,10 @@
 package com.diekmann.code.crud.domain;
 
-
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 /**
  * Created by abraun on 23/11/2017.
