@@ -23,7 +23,7 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Notes findOne(final Long id) {
-        return notesRepository.findById(id).get();
+        return notesRepository.findById(id).orElse(null);
     }
 
     @Override
