@@ -1,99 +1,24 @@
-buildscript {
-    ext { springBootVersion = '1.5.9.RELEASE' }
-    repositories { mavenCentral() }
-    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.5'
+	id 'io.spring.dependency-management' version '1.1.0'
 }
-
-ext { springBootVersion = '1.5.9.RELEASE' }
-
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'checkstyle'
-apply plugin: 'pmd'
-apply plugin: 'findbugs'
-apply plugin: "jacoco"
 
 group = 'com.diekmann.code'
-version = '1.0-SNAPSHOT'
-
-description = """CrudDemo"""
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
-}
-
-checkstyle {
-    configFile = file("./config/checkstyle/checkstyle.xml")
-    configProperties = ['suppressionFile': "./config/checkstyle/suppressions.xml"]
-    ignoreFailures = false
-}
-
-pmd {
-    toolVersion = '5.5.2'
-    ruleSets = []
-    ruleSetFiles = files("./config/pmd/ruleset.xml")
-    rulePriority = 4
-}
-
-findbugs {
-    toolVersion = '3.0.1'
-    effort = 'default'
-    reportLevel = 'high'
-}
-
-jacoco {
-    toolVersion = "0.8.1"
-    reportsDir = file("$buildDir/customJacocoReportDir")
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/jacocoHtml")
-    }
-}
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.8
-            }
-        }
-
-        rule {
-            enabled = false
-            element = 'CLASS'
-            includes = ['org.gradle.*']
-
-            limit {
-                counter = 'LINE'
-                value = 'TOTALCOUNT'
-                maximum = 0.3
-            }
-        }
-    }
-}
-
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 repositories {
-        
-     maven { url "http://repo.maven.apache.org/maven2" }
+	mavenCentral()
 }
+
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    runtime("org.hsqldb:hsqldb")
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
 
-    checkstyle "com.puppycrawl.tools:checkstyle:8.7"
-
+tasks.named('test') {
+	useJUnitPlatform()
 }
